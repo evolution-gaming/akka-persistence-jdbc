@@ -174,7 +174,7 @@ trait OracleStatements extends GenericStatements {
 
     DB autoCommit { session ⇒
 
-      val clobBinder = ParameterBinder[StringReader](
+      val clobBinder = ParameterBinder(
         value = new StringReader(marshal(snapshot)),
         binder = (stmt: PreparedStatement, idx: Int) ⇒
           stmt.setClob(idx, new StringReader(marshal(snapshot)))

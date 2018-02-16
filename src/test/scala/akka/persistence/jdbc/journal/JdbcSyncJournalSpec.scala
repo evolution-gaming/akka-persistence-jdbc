@@ -16,6 +16,7 @@
 
 package akka.persistence.jdbc.journal
 
+import akka.persistence.CapabilityFlag
 import akka.persistence.jdbc.common.PluginConfig
 import akka.persistence.jdbc.extension.ScalikeExtension
 import akka.persistence.jdbc.util._
@@ -37,6 +38,8 @@ abstract class JdbcSyncJournalSpec(config: Config) extends JournalSpec(config) w
   override def afterAll() {
     super.afterAll()
   }
+
+  protected def supportsRejectingNonSerializableObjects: CapabilityFlag = CapabilityFlag.off()
 }
 
 abstract class GenericJdbcJournalSpec(config: Config) extends JdbcSyncJournalSpec(config) {
